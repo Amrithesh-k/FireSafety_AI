@@ -1,0 +1,5 @@
+opencv
+traceback
+numpy
+tensorflow
+tensorflow.keras.applications
