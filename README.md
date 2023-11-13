@@ -6,15 +6,15 @@ SecureVision is a machine learning model designed to identify and alert resident
 
 Features
 
-    Fire and Smoke Detection:
+Fire and Smoke Detection:
         The model uses advanced computer vision techniques to detect the presence of fire and smoke in images or video frames.
-    Real-time Alerting:
+Real-time Alerting:
         The system provides real-time alerts to residents and firefighters when fire or smoke is detected.
-    Integration with External Systems:
+Integration with External Systems:
         Easily integrate the system with existing alarm systems, notification services, or emergency response platforms.
-    Customizable Thresholds:
+Customizable Thresholds:
         Adjust detection thresholds based on specific environmental conditions or user preferences.
-    Scalability:
+Scalability:
         The model is designed to scale efficiently, allowing deployment in various environments and settings.
 
 
