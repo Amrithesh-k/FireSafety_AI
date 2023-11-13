@@ -1,0 +1,1 @@
+{"directory": "../data/img_data/train", "target_size": [224, 224], "batch_size": 77, "class_mode": "categorical"}
