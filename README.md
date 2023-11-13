@@ -1,9 +1,11 @@
 Title: SecureVision
 
 Overview:
+
 SecureVision is a machine learning model designed to identify and alert residents and firefighters in the presence of fire or smoke. This README provides a comprehensive guide on the system, including its purpose, features, installation instructions, usage, and more.
 
 Features
+
     Fire and Smoke Detection:
         The model uses advanced computer vision techniques to detect the presence of fire and smoke in images or video frames.
     Real-time Alerting:
