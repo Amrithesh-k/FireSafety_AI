@@ -1,4 +1,4 @@
-#Title: SecureVision
+Title: SecureVision
 
 Overview:
 SecureVision is a machine learning model designed to identify and alert residents and firefighters in the presence of fire or smoke. This README provides a comprehensive guide on the system, including its purpose, features, installation instructions, usage, and more.
@@ -19,7 +19,7 @@ Features
 To install and run the Fire and Smoke Recognition System, follow these steps:
   
   Clone the Repository: 
-  git clone https://github.com/your-username/SecureVision.git
+  git clone https://github.com/Amritesh-K/SecureVision.git
   cd SecureViom
 
   Install Dependencies:
