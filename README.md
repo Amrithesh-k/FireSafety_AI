@@ -20,6 +20,7 @@ The model is designed to scale efficiently, allowing deployment in various envir
 ## Usage
 Web Interface:
 Access the web interface at https://qwerty.streamlit.app/
+![Image of the model working and detecting smoke](/smoke.jpeg)
 
 
 ## Installation
@@ -32,7 +33,7 @@ Access the web interface at https://qwerty.streamlit.app/
   pip install -r requirements.txt
 
   ### Install the pretrained model weights
-  https://github.com/Amrithesh-k/FireSafety_AI/blob/main/data/trained_model_l.h5
+  https://github.com/Amrithesh-k/FireSafety_AI/blob/main/data/trained_model_l.h5 download from this file and add it to the models directory 
   
   ### Run the Application:
   python app.py
