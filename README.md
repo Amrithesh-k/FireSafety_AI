@@ -20,6 +20,7 @@ The model is designed to scale efficiently, allowing deployment in various envir
 ## Usage
 Web Interface:
 Access the web interface at https://qwerty.streamlit.app/
+
 ![Image of the model working and detecting smoke](/smoke.jpeg)
 
 
