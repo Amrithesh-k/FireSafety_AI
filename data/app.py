@@ -13,13 +13,11 @@ label_dict = {0: "default", 1: "fire", 2: "smoke"}
 
 IMG_SIZE = 224
 
-
 def draw_prediction(frame, class_string):
     x_start = frame.shape[1] - 600
     cv2.putText(frame, class_string, (x_start, 75),
                 cv2.FONT_HERSHEY_SIMPLEX, 2.5, (255, 0, 0), 2, cv2.LINE_AA)
     return frame
-
 
 def get_display_string(pred_class, label_dict):
     txt = ""
@@ -30,14 +28,16 @@ def get_display_string(pred_class, label_dict):
             txt += '[' + str(confidence) + ']'
     return txt
 
-
 def prepare_image_for_prediction(img):
     img = np.expand_dims(img, axis=0)
     return preprocess_input(img)
 
-
 def real_time_detection(video_capture, st_image):
     try:
+        if not video_capture.isOpened():
+            st.error("Error: Unable to open the camera.")
+            return
+
         while True:
             ret_val, frame = video_capture.read()
 
@@ -74,10 +74,10 @@ def real_time_detection(video_capture, st_image):
         st.error(f"An error occurred: {str(e)}")
         traceback.print_exc()
 
-
 if __name__ == "__main__":
     # Assuming video_capture and st_image are defined before calling real_time_detection
     video_capture = cv2.VideoCapture(0)
     st.title("Real-time Detection App")
     st_image = st.empty()
     real_time_detection(video_capture, st_image)
+
