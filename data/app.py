@@ -62,6 +62,6 @@ def real_time_detection(video_stream):
         traceback.print_exc()
 
 if __name__ == "__main__":
-    st.title("Real-time Detection App")
+    st.title("SecureVision<beta>")
 
     webrtc_ctx = webrtc_streamer(key="example", video_transformer_factory=real_time_detection)
