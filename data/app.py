@@ -63,5 +63,8 @@ def real_time_detection(video_stream):
 
 if __name__ == "__main__":
     st.title("SecureVision<beta>")
+    video_capture = cv2.VideoCapture(0)
+    st_image = st.empty()
+    real_time_detection(video_capture, st_image)
 
     webrtc_ctx = webrtc_streamer(key="example", video_transformer_factory=real_time_detection)
