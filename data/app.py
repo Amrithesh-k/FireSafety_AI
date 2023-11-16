@@ -6,7 +6,6 @@ import tensorflow as tf
 from tensorflow.keras.applications.resnet50 import preprocess_input
 
 # Load the trained model
-trained_model_l = tf.keras.models.load_model("trained_model_l.h5")
 trained_model_l = tf.keras.models.load_model("/mount/src/firesafety_ai/data/trained_model_l.h5")
 
 # Load the label dictionary
