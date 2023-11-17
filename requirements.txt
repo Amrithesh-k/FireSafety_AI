@@ -3,3 +3,4 @@ opencv-python-headless
 numpy
 streamlit-webrtc
 tensorflow
+git+https://github.com/whitphx/streamlit-webrtc.git#egg=streamlit-webrtc&subdirectory=streamlit_webrtc
