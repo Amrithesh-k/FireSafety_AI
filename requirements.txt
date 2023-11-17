@@ -4,4 +4,3 @@ numpy
 streamlit-webrtc
 tensorflow
 git+https://github.com/whitphx/streamlit-webrtc.git@v0.30.0#egg=streamlit_webrtc
-streamlit.report_thread
