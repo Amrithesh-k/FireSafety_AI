@@ -4,9 +4,12 @@ import cv2
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras.applications.resnet50 import preprocess_input
+import av
+import aiortc
+from streamlit_webrtc import webrtc_streamer, VideoProcessorBase, RTCConfiguration
 
 # Load the trained model
-trained_model_l = tf.keras.models.load_model("/mount/src/firesafety_ai/data/trained_model_l.h5")
+trained_model_l = tf.keras.models.load_model("/mount/src/FireSafety_AI/data/trained_model_l.h5")
 
 # Load the label dictionary
 label_dict = {0: "default", 1: "fire", 2: "smoke"}
@@ -36,50 +39,45 @@ def prepare_image_for_prediction(img):
     return preprocess_input(img)
 
 
-def real_time_detection(video_capture, st_image):
-    try:
-        while True:
-            ret_val, frame = video_capture.read()
+class VideoProcessor(VideoProcessorBase):
+    def __init__(self):
+        self.video_capture = cv2.VideoCapture(0)
 
-            # Ensure the frame is successfully captured
-            if not ret_val:
-                st.warning("Error: Unable to capture frame.")
-                break
+    def recv(self, frame):
+        ret_val, frame = self.video_capture.read()
 
-            resized_frame = cv2.resize(frame, (IMG_SIZE, IMG_SIZE))
-            frame_for_pred = prepare_image_for_prediction(resized_frame)
+        if not ret_val:
+            st.warning("Error: Unable to capture frame.")
+            return frame
 
-            frame_for_pred = np.squeeze(frame_for_pred, axis=0)
+        resized_frame = cv2.resize(frame, (IMG_SIZE, IMG_SIZE))
+        frame_for_pred = prepare_image_for_prediction(resized_frame)
 
-            pred_vec = trained_model_l.predict(
-                np.expand_dims(frame_for_pred, axis=0))
+        frame_for_pred = np.squeeze(frame_for_pred, axis=0)
 
-            pred_class = []
+        pred_vec = trained_model_l.predict(np.expand_dims(frame_for_pred, axis=0))
 
-            confidence = np.round(pred_vec.max(), 2)
+        pred_class = []
 
-            if confidence > 0.4:
-                pc = np.argmax(pred_vec)
-                pred_class.append((pc, confidence))
-            else:
-                pred_class.append((0, 0))
+        confidence = np.round(pred_vec.max(), 2)
 
-            if pred_class:
-                txt = get_display_string(pred_class, label_dict)
-                frame = draw_prediction(frame, txt)
+        if confidence > 0.4:
+            pc = np.argmax(pred_vec)
+            pred_class.append((pc, confidence))
+        else:
+            pred_class.append((0, 0))
 
-            st_image.image(frame, channels="BGR", use_column_width=True)
+        if pred_class:
+            txt = get_display_string(pred_class, label_dict)
+            frame = draw_prediction(frame, txt)
 
-    except Exception as e:
-        st.error(f"An error occurred: {str(e)}")
-        traceback.print_exc()
+        return frame
 
+
+def main():
+    st.title("Real-time Detection App")
+    webrtc_streamer(key="example", video_processor_factory=VideoProcessor)
 
 if __name__ == "__main__":
-    st.title("Real-time Detection App")
-    use_camera = st.checkbox("Use Camera")
+    main()
 
-    if use_camera:
-        video_capture = cv2.VideoCapture(0)
-        st_image = st.empty()
-        real_time_detection(video_capture, st_image)
