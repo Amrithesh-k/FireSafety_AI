@@ -1,5 +1,5 @@
-streamlit==0.89.0
-opencv-python==4.5.3
-numpy==1.19.5
-streamlit-webrtc==0.36.0
-tensorflow==2.6.0
+streamlit
+opencv-python
+numpy
+streamlit-webrtc
+tensorflow
